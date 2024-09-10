@@ -59,12 +59,7 @@ $(".slider-main_component").each(function (index) {
 
 });
 
-</script>
 
-
-
-
-<script>
 window.addEventListener("load", (event) => {
   const accordions = document.querySelectorAll(
   '[bert-accordion-gsap="accordion"]'
