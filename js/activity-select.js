@@ -252,8 +252,35 @@ item.addEventListener('click', function() {
 
       locationDropdown.addEventListener('change', () => {
         //console.log('location changed');
+        // Change its text to "Which Course?"
+        var courseDropdownLabel = document.getElementById('course-dropdown-label');
+        courseDropdownLabel.innerText = "Which Course?";
+
         filterInstance.resetFilters(['activity']);
       });
     }
   ]);
 
+// Update Golf Course Label with name.
+document.addEventListener('click', function (event) {
+    // Log the element that was clicked
+    console.log('Element clicked:', event.target);
+
+    // Check if the clicked element is a link with data-activity-selected="true"
+    if (event.target.matches('a[activity-selected="true"]')) {
+        // Get the inner text of the clicked link
+        var linkText = event.target.innerText;
+        console.log('Link with data-activity-selected="true" clicked. Inner text:', linkText);
+
+        // Set the text of the element with ID course-dropdown-label to match the clicked link's text
+        var courseDropdownLabel = document.getElementById('course-dropdown-label');
+        if (courseDropdownLabel) {
+            console.log('Found element with ID course-dropdown-label. Changing text to:', linkText);
+            courseDropdownLabel.innerText = linkText;
+        } else {
+            console.log('Element with ID course-dropdown-label not found.');
+        }
+    } else {
+        console.log('Clicked element is not a link with data-activity-selected="true".');
+    }
+});

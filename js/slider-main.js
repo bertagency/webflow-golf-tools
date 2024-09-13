@@ -21,7 +21,7 @@ $(".slider-main_component").each(function (index) {
     freeMode: false,
     // Click slide to scroll to slide
     slideToClickedSlide: true,
-    spaceBetween: "0px",
+    spaceBetween: 40,
     
     centredSlides: true,
     autoplay: false,
@@ -30,17 +30,17 @@ $(".slider-main_component").each(function (index) {
     // mobile landscape
     480: {
     slidesPerView: 1,
-    spaceBetween: "0px"
+    spaceBetween: 40
     },
     // tablet
     768: {  
      slidesPerView: 1,
-    spaceBetween: "0px"
+    spaceBetween: 40
     },
     // desktop
     992: {
     slidesPerView: 1,
-    spaceBetween: "0px",
+    spaceBetween: 40,
     centredSlides: true
     }
     },
