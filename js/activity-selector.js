@@ -30,12 +30,12 @@ $("#location-select").change(function(){
     /* Add Event Listener to dropdowns * SHOULD be only when CMSfiltering has changed the dom */
     document.querySelectorAll('[activity-dropdown-item="true"]').forEach(item => {
        item.addEventListener('click', function() {
-       document.getElementById('filter-results-dropdown').classList.remove('hide');
        });
    });
    
    document.querySelectorAll('[data-location-item="true"]').forEach(item => {
        item.addEventListener('click', function() {
+        document.getElementById('filter-results-dropdown').classList.add('hide');
        /* Reset Secondary Filter every time the first dropdown is used */
            //console.log("Reset Dropdown 2");
        /* First trigger a click on the 'Select Activity' dropdown item to RESET the selection */
@@ -78,6 +78,7 @@ $("#location-select").change(function(){
        document.getElementById('filter-results-dropdown').classList.add('hide');
        }
        if (item.textContent.trim() === 'Golf') {
+        document.getElementById('filter-results-dropdown').classList.remove('hide');
        //console.log("Golf Selected");
        /*Change the results appearance into a Dropdown*/
        transformGolf();
@@ -282,6 +283,8 @@ $("#location-select").change(function(){
            }
        } else {
            console.log('Clicked element is not a link with data-activity-selected="true".');
+           //document.getElementById('filter-results-dropdown').classList.add('hide');
+
        }
    });
    
