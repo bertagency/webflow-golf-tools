@@ -83,6 +83,7 @@ $("#location-select").change(function(){
        /*Change the results appearance into a Dropdown*/
        transformGolf();
        } else {
+        document.getElementById('filter-results-dropdown').classList.remove('hide');
        resetGolf();
        }
    
