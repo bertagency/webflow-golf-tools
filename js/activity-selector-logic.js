@@ -74,7 +74,7 @@ $("#location-select").change(function(){
        //console.log("Secondary filter clicked");
        //console.log(item.textContent);
 
-       if (item.textContent.trim() === 'Golf') {
+       if (item.textContent.trim().includes('Golf')) {
         document.getElementById('filter-results-dropdown').classList.remove('hide');
        //console.log("Golf Selected");
        /*Change the results appearance into a Dropdown*/
