@@ -27,12 +27,11 @@ $("#location-select").change(function(){
    function createEventListeners() {
    //console.log("Creating Event Listeners");
       /**/
-    /* Add Event Listener to dropdowns * SHOULD be only when CMSfiltering has changed the dom 
+    /* Add Event Listener to dropdowns * SHOULD be only when CMSfiltering has changed the dom */
     document.querySelectorAll('[activity-dropdown-item="true"]').forEach(item => {
        item.addEventListener('click', function() {
        });
    });
-   */
    
    document.querySelectorAll('[data-location-item="true"]').forEach(item => {
        item.addEventListener('click', function() {
@@ -190,6 +189,7 @@ $("#location-select").change(function(){
        // The `renderitems` event runs whenever the list renders items after switching pages.
        listInstance.on('renderitems', (renderedItems) => {
        
+        console.log("Filters loaded done");
    
        document.querySelectorAll('[activity-selected="true"]').forEach(item => {
    
@@ -292,3 +292,23 @@ $("#location-select").change(function(){
        }
    });
    
+
+const activitySelect = document.getElementById('activity-options-select');
+
+// Add event listener to listen for changes in the select element
+activitySelect.addEventListener('change', function() {
+    const selectedValue = activitySelect.value;
+
+    // Check if selected value is empty
+    if (selectedValue === '') {
+        console.log("It's Empty");
+        document.getElementById('filter-results-dropdown').classList.add('hide');
+    } else {
+        
+    document.getElementById('filter-results-dropdown').classList.remove('hide');
+        console.log('Yes!');
+        console.log('Selected value:', selectedValue);  // Log the selected value
+    }
+
+
+});
