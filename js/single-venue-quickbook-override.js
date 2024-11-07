@@ -4,7 +4,7 @@
     'cmsfilter',
     (filterInstances) => {
       console.log('cmsfilter Successfully loaded!');
-      alert('cmsfilter has been loaded successfully!');
+      //alert('cmsfilter has been loaded successfully!');
 
       // Find the element with `data-venue-override`
       const venueOverrideElement = document.querySelector('[data-venue-override]');
@@ -14,7 +14,7 @@
         const venueValue = venueOverrideElement.getAttribute('data-venue-override');
         
         // Show an alert with the stored value
-        alert(`Venue Override Value: ${venueValue}`);
+        //alert(`Venue Override Value: ${venueValue}`);
 
         // Find the select element with the ID `location-select`
         const locationSelect = document.getElementById('location-select');
@@ -26,7 +26,7 @@
           // Optionally, trigger a change event if needed
           locationSelect.dispatchEvent(new Event('change'));
         } else {
-          alert('Select element with ID location-select not found.');
+          //alert('Select element with ID location-select not found.');
         }
 
         // Find the div with `activity-checker-name` matching `venueValue`
@@ -38,7 +38,7 @@
           
           if (invisibleItems.length > 0) {
             // Alert the list of `activity-checker-item` values that have the class `w-condition-invisible`
-            alert(`Found ${invisibleItems.length} 'activity-checker-item' elements with 'w-condition-invisible':\n` + 
+           // alert(`Found ${invisibleItems.length} 'activity-checker-item' elements with 'w-condition-invisible':\n` + 
                   invisibleItems.map(item => item.getAttribute('activity-checker-item')).join(', '));
 
             // Loop through each `activity-checker-item` value
@@ -55,13 +55,13 @@
               }
             });
           } else {
-            alert('No activity-checker-item elements with "w-condition-invisible" class found.');
+            //alert('No activity-checker-item elements with "w-condition-invisible" class found.');
           }
         } else {
-          alert(`No matching element found for activity-checker-name="${venueValue}"`);
+          //alert(`No matching element found for activity-checker-name="${venueValue}"`);
         }
       } else {
-        alert('No element with data-venue-override found.');
+        //alert('No element with data-venue-override found.');
       }
     }
   ]);
