@@ -265,3 +265,47 @@ document.querySelectorAll('a[data-action-button="true"]').forEach(link => {
 
 });
 
+
+/* Relabel Golf Course Dropdown with the selected value */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Event listener for elements with the attribute `data-golf-course-name`
+    document.querySelectorAll('[data-golf-course-name]').forEach(element => {
+      element.addEventListener('click', () => {
+        // Get the value of the `data-golf-course-name` attribute
+        const courseName = element.getAttribute('data-golf-course-name');
+        
+        // Find the element with the ID `course-dropdown-label`
+        const courseDropdownLabel = document.getElementById('course-dropdown-label');
+        
+        if (courseDropdownLabel) {
+          // Change the inner HTML text value to the course name
+          courseDropdownLabel.innerHTML = courseName;
+        } else {
+          console.log('Element with ID course-dropdown-label not found.');
+        }
+      });
+    });
+
+    // Event listeners for changes in the select elements with IDs `location-select` or `activity-select`
+    ['location-select', 'activity-select'].forEach(selectId => {
+      const selectElement = document.getElementById(selectId);
+      
+      if (selectElement) {
+        selectElement.addEventListener('change', () => {
+          // Find the element with the ID `course-dropdown-label`
+          const courseDropdownLabel = document.getElementById('course-dropdown-label');
+          
+          if (courseDropdownLabel) {
+            // Change the inner HTML text value to 'Which Course?'
+            courseDropdownLabel.innerHTML = 'Which Course?';
+          } else {
+            console.log('Element with ID course-dropdown-label not found.');
+          }
+        });
+      } else {
+        console.log(`Select element with ID ${selectId} not found.`);
+      }
+    });
+  });
+  /* End Relabelling */
