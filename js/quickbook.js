@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // Select all elements with data-action-button="true"
-    const actionButtons = document.querySelectorAll('[data-action-button="true"]');
+    const actionButtons = document.querySelectorAll('[data-book-intent="true"]');
     
     // Attach a click event listener to each of these elements
     actionButtons.forEach(function(button) {
