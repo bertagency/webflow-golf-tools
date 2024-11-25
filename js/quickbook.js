@@ -1,23 +1,25 @@
-
 /** ----- Quick Book Logic ----- **/
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Ensure Activity Click always opens link
-        document.addEventListener('click', function(event) {
-            // Check if the clicked element has the data-action-button attribute
-            if (event.target && event.target.getAttribute('data-action-button') === 'true') {
-                // Get the href attribute of the clicked element
-                const href = event.target.getAttribute('href');
-                
-                // Check if the href is valid
-                if (href) {
-                    // Open the URL in the same window
-                    window.location.href = href;
-                }
+    // Select all elements with data-action-button="true"
+    const actionButtons = document.querySelectorAll('[data-action-button="true"]');
+    
+    // Attach a click event listener to each of these elements
+    actionButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            // Get the href attribute of the clicked element
+            const href = button.getAttribute('href');
+            
+            // Check if the href is valid
+            if (href) {
+                // Open the URL in the same window
+                window.location.href = href;
             }
         });
-    
+    });
+
+
     /* Functon to control visibility of Activity Dropdown Items */
     
           function handleDropdownUpdateClick() {
@@ -324,4 +326,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
       });
       /* End Relabelling */
-    
