@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
             activityResults.classList.remove('hide');
         }
     
-        if (selectedValue === 'Crazy Golf') {
+        if (selectedValue.toLowerCase() === 'crazy golf') {
             golfCourseFinder.classList.remove('hide');
         } else {
             golfCourseFinder.classList.add('hide');
