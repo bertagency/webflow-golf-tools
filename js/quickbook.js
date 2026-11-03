@@ -70,13 +70,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Safety net: capture phase, so it runs before the other click handlers.
+    // Safety net: capture phase, so it runs before the other handlers. pointerdown
+    // covers touch, long-press, right- and middle-click; focusin covers keyboard.
     // Only the picker's activity links. Not #go-button (its link comes from the
     // crazy golf course clicked, which can carry its own locationId).
-    document.addEventListener("click", function(event) {
-        const link = event.target.closest('a[data-action-button="true"]');
-        if (link) applyLocationId(link);
-    }, true);
+    ["pointerdown", "focusin", "click"].forEach(function(type) {
+        document.addEventListener(type, function(event) {
+            const link = event.target.closest && event.target.closest('a[data-action-button="true"]');
+            if (link) applyLocationId(link);
+        }, true);
+    });
 
     /*** Control visibility of activity buttons and Golf Course Finder depending on which activity is selected **/
     const activitySelect = document.getElementById("activity-select");
