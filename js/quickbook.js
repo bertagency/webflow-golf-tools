@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
 
     // Define the reusable location change handler function
@@ -47,21 +46,37 @@ document.addEventListener("DOMContentLoaded", function() {
     const elementsToRemove = document.querySelectorAll('[fs-cmsfilter-field="location"].w-condition-invisible');
     elementsToRemove.forEach(element => element.remove());
 
-    // Bind the location ID to all buttons when a location is selected
+    // Bind the location ID to all buttons when a location is selected.
+    // FIX (Nov 2026): Finsweet CMS Filter takes activity items out of the DOM when the
+    // chosen venue doesn't offer them, and puts them back later. Items that were out of
+    // the DOM when the location changed kept the previous venue's ID
+    // (Bournemouth > Stevenage > Norwich left Electro Darts on Stevenage's ID).
+    // So the current ID is stored and re-applied at click time.
+    let currentLocationId = null;
+
+    function applyLocationId(link) {
+        const rawHref = link.getAttribute("href");
+        if (!currentLocationId || !rawHref || rawHref === "#") return;
+        const url = new URL(link.href);
+        url.searchParams.set("locationId", currentLocationId);
+        link.href = url.toString();
+    }
+
     document.getElementById("location-select").addEventListener("change", function() {
-        const selectedValue = this.value;
-        const matchingElement = document.querySelector(`[venue-location-name="${selectedValue}"]`);
-        
+        const matchingElement = document.querySelector(`[venue-location-name="${this.value}"]`);
         if (matchingElement) {
-            const locationId = matchingElement.getAttribute("venue-location-id");
-            const actionButtons = document.querySelectorAll('a[data-action-button="true"]');
-            actionButtons.forEach(button => {
-                const url = new URL(button.href);
-                url.searchParams.set("locationId", locationId);
-                button.href = url.toString();
-            });
+            currentLocationId = matchingElement.getAttribute("venue-location-id");
+            document.querySelectorAll('a[data-action-button="true"]').forEach(applyLocationId);
         }
     });
+
+    // Safety net: capture phase, so it runs before the other click handlers.
+    // Only the picker's activity links. Not #go-button (its link comes from the
+    // crazy golf course clicked, which can carry its own locationId).
+    document.addEventListener("click", function(event) {
+        const link = event.target.closest('a[data-action-button="true"]');
+        if (link) applyLocationId(link);
+    }, true);
 
     /*** Control visibility of activity buttons and Golf Course Finder depending on which activity is selected **/
     const activitySelect = document.getElementById("activity-select");
